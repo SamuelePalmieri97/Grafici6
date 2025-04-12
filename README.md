@@ -87,8 +87,8 @@
   </div>
 
   <div style="text-align: center; margin-top: 10px;">
-    <label for="giorniRiferimento">Giorni fino alla scadenza (data di riferimento):</label>
-    <input type="number" id="giorniRiferimento" value="0">
+    <label for="dataRiferimento">Data di Riferimento:</label>
+    <input type="date" id="dataRiferimento" value="2025-04-12">
   </div>
 
   <div style="text-align: center; margin-top: 10px;">
@@ -148,12 +148,16 @@
 
     function aggiornaGrafico() {
       const prezzoAttuale = parseFloat(document.getElementById("prezzo").value);
-      const giorniRiferimento = parseInt(document.getElementById("giorniRiferimento").value);
+      const dataRiferimento = document.getElementById("dataRiferimento").value;
 
-      if (isNaN(prezzoAttuale) || isNaN(giorniRiferimento)) {
+      if (isNaN(prezzoAttuale) || !dataRiferimento) {
         alert("Inserisci un prezzo attuale e una data di riferimento validi.");
         return;
       }
+
+      const prezzoDate = new Date(dataRiferimento);
+      const oggi = new Date();
+      const giorniRiferimento = Math.floor((prezzoDate - oggi) / (1000 * 60 * 60 * 24));  // Differenza in giorni
 
       const prezzi = [];
       const min = prezzoAttuale - 50, max = prezzoAttuale + 50, step = 5;
