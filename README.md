@@ -168,7 +168,7 @@
           payoffTotale = payoffTotale.map((val, i) => val + payoff[i]);
 
           datasets.push({
-            label: Call ${opzione.posizione} @${opzione.strike} (${opzione.scadenza}gg),
+            label: `Call ${opzione.posizione} @${opzione.strike} (${opzione.scadenza}gg)`,
             data: payoff,
             borderColor: colori[idx % colori.length],
             borderWidth: 2,
@@ -178,7 +178,7 @@
       });
 
       datasets.push({
-        label: Payoff Totale (≥ ${giorniRiferimento}gg),
+        label: `Payoff Totale (≥ ${giorniRiferimento}gg)`,
         data: payoffTotale,
         borderColor: "black",
         borderWidth: 2,
